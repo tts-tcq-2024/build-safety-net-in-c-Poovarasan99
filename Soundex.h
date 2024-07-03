@@ -24,19 +24,19 @@ int is_char_in_array(char array[], int array_size, char input_char) {
 }
 
 char getSoundexCode(char c) {
-    char code = 0;
+    int code = 0;
     char SoundexCode[6][8] = { {'B','F','P','V'},{'C','G','J','K','Q','S','X','Z'},{'D','T'}, {'L'}, {'M','N'}, {'R'} };
-    if(is_char_in_array(SoundexCode[i],sizeof(SoundexCode[i]),name[i])){
-        code = i+1;
+    int index = 0;
+    if(is_char_in_array(SoundexCode[index],sizeof(SoundexCode[index]),name[index])){
+        code = index+1;
     }
-    return code;
+    return char(code);
 }
 
 void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
-    
 
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
