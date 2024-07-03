@@ -7,7 +7,6 @@
 
 // Function to compare two characters
 int compare_characters(char input_char, char char_to_compare) {
-    // printf("array character %c == input char %c\n",char_to_compare,input_char);
     return (toupper(input_char) == toupper(char_to_compare)) ? 1 : 0;
 }
 
@@ -16,7 +15,6 @@ int is_char_in_array(char *array, char input_char) {
     int search_result = 0;
     int i = 0;
     while (array[i] != '\0' & search_result == 0) {
-        // printf("array[%d] = %c\n",i, array[i]);
         search_result = compare_characters(input_char, array[i]);
         i++;
     }
