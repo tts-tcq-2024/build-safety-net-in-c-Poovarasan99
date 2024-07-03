@@ -27,7 +27,7 @@ char getSoundexCode(char c) {
     int code = 0;
     char SoundexCode[6][8] = { {'B','F','P','V'},{'C','G','J','K','Q','S','X','Z'},{'D','T'}, {'L'}, {'M','N'}, {'R'} };
     int index = 0;
-    if(is_char_in_array(SoundexCode[index],sizeof(SoundexCode[index]),name[index])){
+    if(is_char_in_array(SoundexCode[index],sizeof(SoundexCode[index]),c)){
         code = index+1;
     }
     return char(code);
