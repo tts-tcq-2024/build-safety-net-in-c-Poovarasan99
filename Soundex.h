@@ -36,17 +36,15 @@ char getSoundexCode(char c) {
     return code;
 }
 
-void attach_soundex_string(char *array_to_be_modified, char char_to_attach, int *index){
-    if (char_to_attach != '0' && char_to_attach != array_to_be_modified[*index - 1]) {
-            array_to_be_modified[*index] = char_to_attach;
-            *index++;
+void attach_string(char* array_to_be_modified, char char_to_attach, int *index) {
+    if ((char_to_attach != '0') && (char_to_attach != array_to_be_modified[*index - 1])) {
+        array_to_be_modified[(*index)++] = char_to_attach;
     }
 }
 
-
-void add_padding(char *soundex_array, int *index){
-    while(*index < 4){
-        soundex_array[*index++] = '0';
+void add_padding(char soundex_array[], int index) {
+    while (index < 4) {
+        soundex_array[index++] = '0';
     }
 }
 
@@ -56,10 +54,9 @@ void generateSoundex(const char *name, char *soundex) {
     int sIndex = 1;
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
-        attach_soundex_string(soundex,code,&sIndex);
-        sIndex++;
+        attach_string(soundex, code, &sIndex);
     }
-    add_padding(soundex,&sIndex);
+    add_padding(soundex, sIndex);
     soundex[4] = '\0';
 }
 #endif // SOUNDEX_H
