@@ -5,38 +5,50 @@
 #include <ctype.h>
 #include <string.h>
 
-int compare_buffer(char input_char, char char_to_compare){
-    int result = 0;
-    if(input_char == char_to_compare){
-        result = 1;
-    }
-    return result;
+// Function to compare two characters
+int compare_characters(char input_char, char char_to_compare) {
+    // printf("array character %c == input char %c\n",char_to_compare,input_char);
+    return (toupper(input_char) == toupper(char_to_compare)) ? 1 : 0;
 }
 
-int is_char_in_array(char array[], int array_size, char input_char) {
+// Function to check if a character is in an array
+int is_char_in_array(char *array, char input_char) {
     int search_result = 0;
     int i = 0;
-    while(i<array_size && search_result == 0){
-        search_result = compare_buffer(input_char,array[i]);
+    while (array[i] != '\0' & search_result == 0) {
+        // printf("array[%d] = %c\n",i, array[i]);
+        search_result = compare_characters(input_char, array[i]);
         i++;
     }
     return search_result;
 }
 
 char getSoundexCode(char c) {
-    int code = 0;
-    char SoundexCode[6][8] = { {'B','F','P','V'},{'C','G','J','K','Q','S','X','Z'},{'D','T'}, {'L'}, {'M','N'}, {'R'} };
+    char code = '0';
+    char SoundexCode[6][9] = { {'B','F','P','V'}, {'C','G','J','K','Q','S','X','Z'}, {'D','T'}, {'L'}, {'M','N'}, {'R'} };
+    char SoundexDigits[6] = {'1','2','3','4','5','6'};
     int index = 0;
-    if(is_char_in_array(SoundexCode[index],sizeof(SoundexCode[index]),c)){
-        code = index+1;
+    while(index < 6){
+        if(is_char_in_array(SoundexCode[index],c)){
+            code = SoundexDigits[index];
+            break;
+        }
+        index++;
     }
-    return char(code);
+    return code;
 }
 
-void add_padding(char soundex_array[]){
-    int index = 1;
-    while(index < 4){
-        soundex_array[index++] = '0';
+void attach_soundex_string(char *array_to_be_modified, char char_to_attach, int *index){
+    if (char_to_attach != '0' && char_to_attach != array_to_be_modified[*index - 1]) {
+            array_to_be_modified[*index] = char_to_attach;
+            *index++;
+    }
+}
+
+
+void add_padding(char *soundex_array, int *index){
+    while(*index < 4){
+        soundex_array[*index++] = '0';
     }
 }
 
@@ -44,19 +56,12 @@ void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
-
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
-        if (code != '0' && code != soundex[sIndex - 1]) {
-            soundex[sIndex++] = code;
-        }
+        attach_soundex_string(soundex,code,&sIndex);
+        sIndex++;
     }
-    add_padding(soundex);
-    while (sIndex < 4) {
-        soundex[sIndex++] = '0';
-    }
-
+    add_padding(soundex,&sIndex);
     soundex[4] = '\0';
 }
-
 #endif // SOUNDEX_H
