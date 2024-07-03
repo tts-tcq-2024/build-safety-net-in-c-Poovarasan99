@@ -38,7 +38,7 @@ void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
-    char SoundexCode[5][] = { {'B','F','P','V'},{'C','G','J','K','Q','S','X','Z'},{'D','T'}, {'L'}, {'M','N'}, {'R'} };
+    char SoundexCode[5][8] = { {'B','F','P','V'},{'C','G','J','K','Q','S','X','Z'},{'D','T'}, {'L'}, {'M','N'}, {'R'} };
 
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = is_char_in_array(SoundexCode[i],sizeof(SoundexCode[i]),name[i]);
