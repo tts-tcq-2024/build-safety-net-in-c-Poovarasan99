@@ -2,13 +2,8 @@
 #include "Soundex.h"
 
 TEST(SoudexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
- char soundex[5];
- generateSoundex("AX", soundex);
- ASSERT_EQ(soundex,"A200");
+  char soundex[5];
+  generateSoundex("AX", soundex);
+  printf("%c%c%c%%c\n",soundex[0],soundex[1],soundex[2],soundex[3]);
+  ASSERT_EQ(soundex,"A200");
 }
-
-// TEST(SoudexTestsuite, ReplacesConsonantsWithAppropriateDigitsCase2) {
-//  char soundex[5];
-//  generateSoundex("AEIOU", soundex);
-//  ASSERT_EQ(soundex,"A000");
-// }
