@@ -36,6 +36,11 @@ char getSoundexCode(char c) {
     return code;
 }
 
+void update_index_on_empty_string(char *soundexString, int *index){
+    if (soundexString[0] == '\0'){
+        *index = 0;
+    }
+}
 void update_soundex_code(char* soundex_array, char code, int *index) {
     if ((code != '0') && (code != soundex_array[*index - 1])) {
         soundex_array[(*index)++] = code;
@@ -52,6 +57,7 @@ void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
+    update_index_on_empty_string(soundex, &sIndex);
     for (int i = 1; i < len && sIndex < 4; i++) {
         char code = getSoundexCode(name[i]);
         update_soundex_code(soundex, code, &sIndex);
