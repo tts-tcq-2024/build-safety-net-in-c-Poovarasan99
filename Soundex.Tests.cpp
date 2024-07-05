@@ -27,8 +27,8 @@ INSTANTIATE_TEST_SUITE_P(TestParameters, SoundexTestsuite,
         std::make_tuple("Robert", "R163"),
         std::make_tuple("Ropert", "R163"),
         std::make_tuple("Rubin", "R150"),
-        std::make_tuple("Ashcraft", "A261")
-        // std::make_tuple("", "000")
+        std::make_tuple("Ashcraft", "A261"),
+        std::make_tuple("", "0000")
         // std::make_tuple("tymczak", "T522")
         // std::make_tuple("Pfister", "P236")
         // std::make_tuple("honeyman", "H555")
