@@ -23,7 +23,7 @@ TEST_P(SoundexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
 INSTANTIATE_TEST_SUITE_P(TestParameters, SoundexTestsuite,
     testing::Values(
         std::make_tuple("AX", "A200"),
-        std::make_tuple("", "0000"),
+        std::make_tuple("", "000"),
         std::make_tuple("A", "A000")
     )
 );
