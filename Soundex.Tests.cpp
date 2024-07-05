@@ -19,7 +19,7 @@ TEST_P(SoundexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
   generateSoundex(input_string, generatedSoundex);
 
   // Verify the expected result (character by character comparison)
-    EXPECT_STREQ(generatedSoundex[i], expected_soundex[i]);
+    EXPECT_STREQ(generatedSoundex, expected_soundex);
 }
 
 // Instantiate the test case with various data sets
