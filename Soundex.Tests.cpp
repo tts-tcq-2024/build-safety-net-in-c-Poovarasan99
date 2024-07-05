@@ -6,7 +6,7 @@ class SoundexTestsuite : public ::testing::Test {
 };
 
 //test data for parameterized testing
-using SoundexTestData = std::tuple<char*, str>;
+using SoundexTestData = std::tuple<char*, char*>;
 
 // test case with value-parameterized arguments
 TEST_P(SoundexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
