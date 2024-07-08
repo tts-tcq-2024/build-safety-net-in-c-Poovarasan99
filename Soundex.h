@@ -5,6 +5,9 @@
 #include <ctype.h>
 #include <string.h>
 
+char SoundexCode[6][9] = { {'B','F','P','V'}, {'C','G','J','K','Q','S','X','Z'}, {'D','T'}, {'L'}, {'M','N'}, {'R'} };
+char SoundexDigits[6] = {'1','2','3','4','5','6'};
+
 // Function to compare two characters
 int compare_characters(char input_char, char char_to_compare) {
     return (toupper(input_char) == toupper(char_to_compare)) ? 1 : 0;
@@ -23,8 +26,6 @@ int is_char_in_array(char *array, char input_char) {
 
 char getSoundexCode(char c) {
     char code = '0';
-    char SoundexCode[6][9] = { {'B','F','P','V'}, {'C','G','J','K','Q','S','X','Z'}, {'D','T'}, {'L'}, {'M','N'}, {'R'} };
-    char SoundexDigits[6] = {'1','2','3','4','5','6'};
     int index = 0;
     while(index < 6){
         if(is_char_in_array(SoundexCode[index],c)){
